@@ -10,7 +10,7 @@ class App extends Component {
 
     this.state = {
       monsters: [],
-      searchedMonsters: [],
+      searchString: '',
     };
   }
 
@@ -20,7 +20,7 @@ class App extends Component {
       .then((users) =>
         this.setState(
           () => {
-            return { monsters: users, searchedMonsters: users };
+            return { monsters: users };
           },
           () => {
             console.log(this.state);
@@ -30,6 +30,9 @@ class App extends Component {
   }
 
   render() {
+    const filteredMonsters = this.state.monsters.filter((monster) => {
+      return monster.name.toLocaleLowerCase().includes(this.state.searchString);
+    });
     return (
       <div className='App'>
         <input
@@ -37,18 +40,14 @@ class App extends Component {
           type='search'
           placeholder='Search Monster'
           onChange={(event) => {
-            const filteredMonsters = this.state.monsters.filter((monster) => {
-              return monster.name
-                .toLowerCase()
-                .includes(event.target.value.toLocaleLowerCase());
-            });
+            const searchString = event.target.value.toLocaleLowerCase();
             this.setState(() => {
-              return { searchedMonsters: filteredMonsters };
+              return { searchString };
             });
           }}
         />
 
-        {this.state.searchedMonsters.map((monster) => {
+        {filteredMonsters.map((monster) => {
           return <h1 key={monster.id}>{monster.name}</h1>;
         })}
       </div>
