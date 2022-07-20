@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import CardList from './components/card-list/card-list.compontent';
+import SearchBox from './components/search-box/search-box.component.jsx';
 //Components are independent and reusable bits of code. They serve the same purpose as JavaScript functions, but work in isolation and return HTML.
 
 import './App.css';
@@ -42,16 +43,11 @@ class App extends Component {
     });
     return (
       <div className='App'>
-        <input
+        <SearchBox
           className='search-box'
-          type='search'
-          placeholder='Search Monster'
-          onChange={OnSearchChange}
+          onChangeHandler={OnSearchChange}
+          placeholder='Search Monsters'
         />
-
-        {/* {filteredMonsters.map((monster) => {
-          return <h1 key={monster.id}>{monster.name}</h1>;
-        })} */}
         <CardList monsters={filteredMonsters} />
       </div>
     );
