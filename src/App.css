@@ -8,8 +8,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(
     to left,
-    rgba(7, 27, 82, 1) 0%,
-    rgba(0, 128, 128, 1) 100%
+    rgb(233, 235, 239) 0%,
+    rgb(254, 123, 234) 100%
   );
   text-align: center;
+}
+
+.main-header {
+  font-family: Operator Mono Lig, 'Times New Roman', Times, serif;
+  color: rgb(89, 2, 132);
 }
